@@ -108,6 +108,7 @@ const Portfolio = () => {
         "about",
         "skills",
         "projects",
+        "career",
         "education",
         "contact",
       ];
@@ -187,6 +188,48 @@ const Portfolio = () => {
     },
   ];
 
+  const navItems = [
+    "Home",
+    "About",
+    "Skills",
+    "Projects",
+    "Career",
+    "Education",
+    "Contact",
+  ];
+
+  const careerJourney = [
+    {
+      title: "Associate Web Engineer Intern",
+      company: "Jarvis Technolabs",
+      period: "Running",
+    },
+  ];
+
+  const academicJourney = [
+    {
+      title: "Bachelor of Technology (B.Tech)",
+      subtitle: "Information and Communication Technology (ICT)",
+      school: "Dhirubhai Ambani University",
+      location: "Gandhinagar, Gujarat",
+      year: "2022 - 2026",
+    },
+    {
+      title: "Higher Secondary Education",
+      subtitle: "GHSEB",
+      school: "Reliance Foundation School",
+      location: "Surat, Gujarat",
+      year: "2021 - 2022",
+    },
+    {
+      title: "Secondary Education",
+      subtitle: "GSEB",
+      school: "Reliance Foundation School",
+      location: "Surat, Gujarat",
+      year: "2019 - 2020",
+    },
+  ];
+
   return (
     <div className="bg-black text-gray-100 min-h-screen">
       {/* Navigation */}
@@ -206,15 +249,8 @@ const Portfolio = () => {
             >
               Jyot Vasava
             </a>
-            <div className="hidden md:flex space-x-10">
-              {[
-                "Home",
-                "About",
-                "Skills",
-                "Projects",
-                "Education",
-                "Contact",
-              ].map((item) => (
+            <div className="hidden md:flex space-x-8">
+              {navItems.map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
@@ -238,14 +274,7 @@ const Portfolio = () => {
         </div>
         {isMenuOpen && (
           <div className="md:hidden bg-gray-900 border-t border-gray-800">
-            {[
-              "Home",
-              "About",
-              "Skills",
-              "Projects",
-              "Education",
-              "Contact",
-            ].map((item) => (
+            {navItems.map((item) => (
               <button
                 key={item}
                 onClick={() => scrollToSection(item.toLowerCase())}
@@ -290,6 +319,7 @@ const Portfolio = () => {
                 </button>
                 <a
                   href="/Jyot_Vasava_Resume.pdf"
+                  download="Jyot_Vasava_Resume.pdf"
                   className="flex items-center gap-2 px-8 py-4 border-2 border-gray-700 hover:border-yellow-500 rounded transition-all transform hover:scale-105"
                 >
                   <Download size={20} /> Download Resume
@@ -394,6 +424,7 @@ const Portfolio = () => {
                   "Node.js",
                   "MongoDB",
                   "JavaScript",
+                  "TypeScript",
                   "PostgreSQL",
                 ].map((s) => (
                   <span
@@ -610,8 +641,40 @@ const Portfolio = () => {
         </div>
       </section>
 
+      {/* Career */}
+      <section id="career" className="py-24 px-6 bg-gray-950">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-yellow-500 font-semibold mb-4 text-sm tracking-widest">
+              EXPERIENCE
+            </p>
+            <h2 className="text-5xl font-bold mb-4">
+              Career <span className="text-yellow-500">Journey</span>
+            </h2>
+            <p className="text-gray-400">Professional internship experience</p>
+          </div>
+          <div className="relative max-w-5xl mx-auto">
+            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gray-800"></div>
+            {careerJourney.map((item, i) => (
+              <div key={i} className="flex items-center gap-4">
+                <div className="relative z-10 w-16 h-16 bg-gray-800 border-2 border-gray-700 rounded-full flex items-center justify-center">
+                  <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                </div>
+                <div className="bg-black border border-gray-800 rounded-lg p-6 flex-1">
+                  <h3 className="text-2xl font-bold mb-2">{item.title}</h3>
+                  <p className="text-yellow-500 font-semibold mb-3">
+                    {item.company}
+                  </p>
+                  <p className="text-gray-500 text-sm">{item.period}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Education */}
-      <section id="education" className="py-24 px-6 bg-gray-950">
+      <section id="education" className="py-24 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-yellow-500 font-semibold mb-4 text-sm tracking-widest">
@@ -626,54 +689,26 @@ const Portfolio = () => {
           </div>
           <div className="relative">
             <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gray-800"></div>
-            {[
-              {
-                current: true,
-                title: "Bachelor of Technology (B.Tech)",
-                subtitle: "Information and Communication Technology (ICT)",
-                school: "Dhirubhai Ambani University",
-                location: "Gandhinagar, Gujarat",
-                year: "2022 – 2026",
-              },
-              {
-                title: "Higher Secondary Education",
-                subtitle: "GHSEB",
-                school: "Reliance Foundation School",
-                location: "Surat, Gujarat",
-                year: "2021 – 2022",
-              },
-              {
-                title: "Secondary Education",
-                subtitle: "GSEB",
-                school: "Reliance Foundation School",
-                location: "Surat, Gujarat",
-                year: "2019 – 2020",
-              },
-            ].map((edu, i) => (
+            {academicJourney.map((edu, i) => (
               <div key={i} className="flex items-center gap-4 mb-12 last:mb-0">
                 <div
                   className={`relative z-10 w-16 h-16 ${
-                    edu.current
-                      ? "bg-yellow-500"
+                    i === 0
+                      ? "bg-gray-800 border-2 border-gray-700"
                       : "bg-gray-800 border-2 border-gray-700"
-                  } rounded-full flex items-center justify-center `}
+                  } rounded-full flex items-center justify-center`}
                 >
                   <div
                     className={`w-3 h-3 ${
-                      edu.current ? "bg-black" : "bg-yellow-500"
+                      i === 0 ? "bg-yellow-500" : "bg-yellow-500"
                     } rounded-full`}
                   ></div>
                 </div>
                 <div
                   className={`bg-black border ${
-                    edu.current ? "border-yellow-500" : "border-gray-800"
+                    i === 0 ? "border-gray-800" : "border-gray-800"
                   } rounded-lg p-6 flex-1`}
                 >
-                  {edu.current && (
-                    <div className="inline-block px-3 py-1 bg-yellow-500 text-black text-xs font-bold rounded-full mb-3">
-                      Current
-                    </div>
-                  )}
                   <h3 className="text-2xl font-bold mb-2">{edu.title}</h3>
                   <p className="text-yellow-500 font-semibold mb-3">
                     {edu.subtitle}
